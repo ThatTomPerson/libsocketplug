@@ -45,7 +45,7 @@ bstring http_get(char *url)
         res = curl_easy_perform(curl);
         check(res == CURLE_OK, "Get to %s unsuccessful.", url);
 
-        debug("%s\n", bdata(data));
+        debug("get: %s\n", bdata(data));
 
     }
 

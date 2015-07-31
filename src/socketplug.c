@@ -23,6 +23,12 @@ void send_chat(bstring *message);
 bstring get_websocket_token();
 
 
+bstring timestamp() {
+    time_t t = time(NULL);
+    bstring time = bformat("%d", (unsigned) t);
+    return time;
+}
+
 static char *room;
 
 /*
@@ -266,7 +272,9 @@ void join_room()
 
     debug("room payload: %s", bdata(json));
 
-    debug("room state: %s", bdata(http_get("https://plug.dj/_/rooms/state")));
+    bstring state = http_get("https://plug.dj/_/rooms/state");
+
+    debug("room state: %s", bdata(state));
 
     bdestroy(json);
 }
